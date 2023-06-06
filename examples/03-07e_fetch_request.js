@@ -1,7 +1,3 @@
-async function fetchUser() {
-  const response = await fetch("http://jsonplaceholder.typicode.com/users/1");
-  const body = await response.json();
-  console.log(body);
-}
-
-fetchUser();
+fetch("http://jsonplaceholder.typicode.com/users/1")
+  .then((response) => response.json())
+  .then((body) => console.log(body));
