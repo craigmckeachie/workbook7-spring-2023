@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">Home</a>
+      <a href="todos.html">ToDos</a>
+    </header>
+    <main>
+      <h1>ToDos</h1>
+      <input
+        type="number"
+        id="input-todo"
+        name="input-todo"
+        placeholder="Enter todo"
+      />
+      <button onclick="findTodo();">Get</button>
+      <div id="todo-details">
+
+      </div>
+    </main>
+    <footer></footer>
+    <script>
+      const inputTodo = document.querySelector("#input-todo");
+      const button = document.querySelector("button");
+
+      function findTodo() {
+        
+      }
+    </script>
+  </body>
+</html>
