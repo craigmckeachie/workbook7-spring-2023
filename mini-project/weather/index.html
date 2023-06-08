@@ -15,7 +15,26 @@
       <h3>Weather</h3>
       <label for="city-ddl">City</label>
       <select id="city-ddl" onchange="handleCityChanged();"></select>
+      <table>
+        <thead>
+          <!-- <tr>
+            <th>Month</th>
+            <th>Savings</th>
+          </tr> -->
+        </thead>
+        <tbody id="forecasts-table-body">
+          <!-- <tr>
+            <td>January</td>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <td>February</td>
+            <td>$80</td>
+          </tr> -->
+        </tbody>
+      </table>
     </main>
+
     <script>
       let cities = [
         { name: "Benbrook, TX", latitude: 32.6732, longitude: -97.4606 },
@@ -44,8 +63,17 @@
 
       loadCityDropDownList();
 
+      function getPoint(city) {
+        fetch("https://api.weather.gov/points/32.6791,-97.4641")
+          .then((response) => response.json())
+          .then(function (point) {
+            console.log(point.properties.forecast);
+          });
+      }
+
       function handleCityChanged() {
         console.log(cityDropDownList.value);
+        getPoint();
       }
     </script>
   </body>
