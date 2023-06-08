@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <h3>Weather</h3>
+      <label for="city-ddl">City</label>
+      <select id="city-ddl" onchange="handleCityChanged();"></select>
+    </main>
+    <script>
+      let cities = [
+        { name: "Benbrook, TX", latitude: 32.6732, longitude: -97.4606 },
+        { name: "Pittsburgh, PA", latitude: 40.436072, longitude: -79.991315 },
+        { name: "Washington, DC", latitude: 38.896241, longitude: -77.036247 },
+        { name: "Brooklyn, NY", latitude: 40.697136, longitude: -73.997422 },
+      ];
+
+      const cityDropDownList = document.querySelector("#city-ddl");
+
+      function loadCityDropDownList() {
+        let defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.innerText = "Select City...";
+        cityDropDownList.appendChild(defaultOption);
+
+        // loop through cities array and create an option for each city
+        //use city name for both the value and the text content of the option
+        for (const city of cities) {
+          let option = document.createElement("option");
+          option.value = city.name;
+          option.innerText = city.name;
+          cityDropDownList.appendChild(option);
+        }
+      }
+
+      loadCityDropDownList();
+
+      function handleCityChanged() {
+        console.log(cityDropDownList.value);
+      }
+    </script>
+  </body>
+</html>

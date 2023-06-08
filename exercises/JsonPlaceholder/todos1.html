@@ -45,17 +45,16 @@
       const inputTodoId = document.querySelector("#input-todo-id");
       const button = document.querySelector("button");
 
-      // - when button clicked
-      // - get the todo id out of the textbox on the screen
-      // - verify that I am getting different ids that I enter them and the button
+      function loadTodo() {
+        const id = inputTodoId.value;
+        fetch(`http://jsonplaceholder.typicode.com/todos/${id}`)
+          .then((response) => response.json())
+          .then((body) => {
+            displayTodo(body);
+          });
+      }
 
-      // - use the id to call the api to get a todo back
-      // - verify I got the data back
-
-      // - display one piece of data
-      // - verify it works
-      // - display another pieces of data
-      // - verify it works
+      function displayTodo(todo) {}
     </script>
   </body>
 </html>
