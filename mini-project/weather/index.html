@@ -67,7 +67,13 @@
         fetch("https://api.weather.gov/points/32.6791,-97.4641")
           .then((response) => response.json())
           .then(function (point) {
-            console.log(point.properties.forecast);
+            let forecastUrl = point.properties.forecast;
+            console.log(forecastUrl);
+            fetch(forecastUrl)
+              .then((response) => response.json())
+              .then(function (forecast) {
+                console.log(forecast);
+              });
           });
       }
 
