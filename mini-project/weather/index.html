@@ -50,7 +50,9 @@
       loadCityDropDownList();
 
       function getPoint(city) {
-        fetch("https://api.weather.gov/points/32.6791,-97.4641")
+        fetch(
+          `https://api.weather.gov/points/${city.latitude},${city.longitude}`
+        )
           .then((response) => response.json())
           .then(function (point) {
             let forecastUrl = point.properties.forecast;
@@ -58,6 +60,7 @@
             fetch(forecastUrl)
               .then((response) => response.json())
               .then(function (forecast) {
+                forecastTableBody.innerHTML = "";
                 for (const period of forecast.properties.periods) {
                   buildTableRow(period);
                 }
@@ -80,12 +83,11 @@
 
       function handleCityChanged() {
         const cityName = cityDropDownList.value;
-        console.log(cityName);
+
         const selectedCity = cities.find(function (city) {
           return city.name == cityName;
         });
-
-        console.log(selectedCity);
+        // const selectedCity = cities.find((city) => city.name == cityName);
         getPoint(selectedCity);
       }
     </script>
