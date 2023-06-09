@@ -54,12 +54,10 @@
           .then((response) => response.json())
           .then(function (point) {
             let forecastUrl = point.properties.forecast;
-            console.log(forecastUrl);
 
             fetch(forecastUrl)
               .then((response) => response.json())
               .then(function (forecast) {
-                console.log(forecast.properties.periods);
                 for (const period of forecast.properties.periods) {
                   buildTableRow(period);
                 }
@@ -68,7 +66,6 @@
       }
 
       function buildTableRow(period) {
-        console.log(period.name, period.temperature, period.detailedForecast);
         let row = forecastTableBody.insertRow();
 
         let td1 = row.insertCell();
@@ -82,8 +79,14 @@
       }
 
       function handleCityChanged() {
-        console.log(cityDropDownList.value);
-        getPoint();
+        const cityName = cityDropDownList.value;
+        console.log(cityName);
+        const selectedCity = cities.find(function (city) {
+          return city.name == cityName;
+        });
+
+        console.log(selectedCity);
+        getPoint(selectedCity);
       }
     </script>
   </body>
