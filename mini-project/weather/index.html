@@ -16,22 +16,7 @@
       <label for="city-ddl">City</label>
       <select id="city-ddl" onchange="handleCityChanged();"></select>
       <table>
-        <thead>
-          <!-- <tr>
-            <th>Month</th>
-            <th>Savings</th>
-          </tr> -->
-        </thead>
-        <tbody id="forecast-table-body">
-          <!-- <tr>
-            <td>January</td>
-            <td>$100</td>
-          </tr>
-          <tr>
-            <td>February</td>
-            <td>$80</td>
-          </tr> -->
-        </tbody>
+        <tbody id="forecast-table-body"></tbody>
       </table>
     </main>
 
@@ -76,7 +61,7 @@
               .then(function (forecast) {
                 console.log(forecast.properties.periods);
                 for (const period of forecast.properties.periods) {
-                    buildTableRow(period);
+                  buildTableRow(period);
                 }
               });
           });
@@ -84,9 +69,16 @@
 
       function buildTableRow(period) {
         console.log(period.name, period.temperature, period.detailedForecast);
-        //period.name
-        //Temperature: period.temperature F
-        // period.detailedForecast
+        let row = forecastTableBody.insertRow();
+
+        let td1 = row.insertCell();
+        td1.innerText = period.name;
+
+        let td2 = row.insertCell();
+        td2.innerText = `Temperature: ${period.temperature} F`;
+
+        let td3 = row.insertCell();
+        td3.innerText = period.detailedForecast;
       }
 
       function handleCityChanged() {
