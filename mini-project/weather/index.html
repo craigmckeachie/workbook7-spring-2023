@@ -22,7 +22,7 @@
             <th>Savings</th>
           </tr> -->
         </thead>
-        <tbody id="forecasts-table-body">
+        <tbody id="forecast-table-body">
           <!-- <tr>
             <td>January</td>
             <td>$100</td>
@@ -44,6 +44,7 @@
       ];
 
       const cityDropDownList = document.querySelector("#city-ddl");
+      const forecastTableBody = document.querySelector("#forecast-table-body");
 
       function loadCityDropDownList() {
         let defaultOption = document.createElement("option");
@@ -69,12 +70,23 @@
           .then(function (point) {
             let forecastUrl = point.properties.forecast;
             console.log(forecastUrl);
+
             fetch(forecastUrl)
               .then((response) => response.json())
               .then(function (forecast) {
-                console.log(forecast);
+                console.log(forecast.properties.periods);
+                for (const period of forecast.properties.periods) {
+                    buildTableRow(period);
+                }
               });
           });
+      }
+
+      function buildTableRow(period) {
+        console.log(period.name, period.temperature, period.detailedForecast);
+        //period.name
+        //Temperature: period.temperature F
+        // period.detailedForecast
       }
 
       function handleCityChanged() {
